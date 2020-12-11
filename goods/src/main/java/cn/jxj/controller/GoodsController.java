@@ -2,7 +2,9 @@ package cn.jxj.controller;
 
 import cn.jxj.client.OrderClient;
 import cn.jxj.entity.Good;
+import cn.jxj.entity.KaUser;
 import cn.jxj.entity.Order;
+import cn.jxj.service.KaUserService;
 import cn.jxj.vo.RestResult;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class GoodsController {
     @Autowired
     private OrderClient orderClient;
 
+    @Autowired
+    private KaUserService userService;
+
     @GetMapping("/hashGood")
     public RestResult<String> hashOrder() {
         return RestResult.success("we have a lot goods");
@@ -42,6 +47,7 @@ public class GoodsController {
     @GetMapping("/feignClientTest")
     public RestResult<List<Order>> feignClientTest() {
         RestResult<List<Order>> orders = orderClient.getOrders();
+        List<KaUser> list = userService.list();
         return orders;
     }
 
