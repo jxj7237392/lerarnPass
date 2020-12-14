@@ -24,23 +24,28 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!-- mybatis-plus相关配置 -->
+<!--        &lt;!&ndash; mybatis-plus相关配置 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>mysql</groupId>-->
+<!--            <artifactId>mysql-connector-java</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash; mybatisPlus 核心库 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.baomidou</groupId>-->
+<!--            <artifactId>mybatis-plus-boot-starter</artifactId>-->
+<!--            <version>3.1.0</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash; 引入阿里数据库连接池 &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba</groupId>-->
+<!--            <artifactId>druid</artifactId>-->
+<!--            <version>1.1.6</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- mybatisPlus 核心库 -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-        <!-- 引入阿里数据库连接池 -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.1.6</version>
+            <groupId>cn.jxj</groupId>
+            <artifactId>service</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

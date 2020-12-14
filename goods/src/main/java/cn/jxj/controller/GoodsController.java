@@ -3,16 +3,20 @@ package cn.jxj.controller;
 import cn.jxj.client.OrderClient;
 import cn.jxj.entity.Good;
 import cn.jxj.entity.KaUser;
-import cn.jxj.entity.Order;
 import cn.jxj.service.KaUserService;
 import cn.jxj.vo.RestResult;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -27,7 +31,11 @@ public class GoodsController {
     private OrderClient orderClient;
 
     @Autowired
-    private KaUserService userService;
+    private RestTemplate restTemplate;
+
+
+    @Autowired
+    private KaUserService kaUserService;
 
     @GetMapping("/hashGood")
     public RestResult<String> hashOrder() {
@@ -45,10 +53,19 @@ public class GoodsController {
     }
 
     @GetMapping("/feignClientTest")
-    public RestResult<List<Order>> feignClientTest() {
-        RestResult<List<Order>> orders = orderClient.getOrders();
-        List<KaUser> list = userService.list();
-        return orders;
+    @Transactional
+    public RestResult feignClientTest() {
+//        RestResult<List<OrderTestVo>> orders = orderClient.getOrders();
+        KaUser kaUser = new KaUser();
+        kaUser.setName("888");
+        kaUserService.save(kaUser);
+//        RestResult restResult = orderClient.saveOrder();
+        //设置访问参数
+        HashMap<String, Object> params = new HashMap<>();
+        HttpEntity entity = new HttpEntity(params);
+        restTemplate.exchange("http://127.0.0.1:8500/api/orderServer/order/saveOrder", HttpMethod.POST, entity, RestResult.class);
+        int a = 1 / 0;
+        return RestResult.success("成功了");
     }
 
 }

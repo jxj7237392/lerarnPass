@@ -5,19 +5,20 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+
 /**
  * @author jxj
  */
 @Data
 public class RestResult<T> implements Serializable {
     private static final long serialVersionUID = -6254845219426574222L;
-//    @ApiModelProperty(value = "是否成功")
+    //    @ApiModelProperty(value = "是否成功")
     private boolean result;
-//    @ApiModelProperty(value = "错误信息")
+    //    @ApiModelProperty(value = "错误信息")
     private String message;
-//    @ApiModelProperty(value = "返回编码")
+    //    @ApiModelProperty(value = "返回编码")
     private String code;
-//    @ApiModelProperty(value = "返回对象")
+    //    @ApiModelProperty(value = "返回对象")
     private T object;
 
     public RestResult() {
